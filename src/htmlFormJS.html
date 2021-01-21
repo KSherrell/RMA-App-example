@@ -1,0 +1,32 @@
+<script>
+
+//handlers for the form buttons
+
+document.getElementById('submit').addEventListener('click', getValues);
+function getValues(e){
+e.preventDefault()
+  var customerRep = $('#customerRep').val();
+  var checkedItems = $("input:checked");
+  if(!customerRep){
+$('#customerRep').focus();
+} else {
+  var len = checkedItems.length;
+  var values = [];
+  var wtf = [];
+   for(var i = 0; i < len; i++){
+   values.push(checkedItems[i].value);
+   }
+   values = values.sort();
+  google.script.run.submitUpdate(values, customerRep);
+    google.script.host.close();
+}
+}
+
+$("#cancel").click(function(e){
+e.preventDefault();
+google.script.host.close();
+
+});
+
+</script>
+

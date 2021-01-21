@@ -1,0 +1,41 @@
+<script>
+
+//handlers for the form buttons
+
+document.getElementById('submit').addEventListener('click', getValues);
+
+function getValues(e) {
+
+    e.preventDefault()
+  
+   var tempTrackNum = "bullSHIT";//why was I upset with this? lolol
+   var trackingNumDiv = document.getElementById('jcTrackingNumberDiv');
+   var trackingNumVal = $('#jcTrackingNumber').val();
+   
+   if (trackingNumDiv) {
+        if(!trackingNumVal){
+            $('#jcTrackingNumber').focus();
+            alert("Please enter the tracking number for this shipment, if applicable.");
+       
+   } else {
+        google.script.run.jobComplete(trackingNumVal);
+        google.script.host.close();
+      }
+      
+    } else {
+        google.script.run.jobComplete('noTrack');
+        google.script.host.close();
+    }
+ }
+
+$("#cancel").click(function (e) {
+    e.preventDefault();
+
+    google.script.run.clearRedirect();
+    google.script.host.close();
+
+});
+
+
+</script>
+

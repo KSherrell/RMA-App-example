@@ -1,0 +1,22 @@
+*****************************************
+***how find next empty cell in a row **** 
+
+var sheet = activeSheet.getSheetByName(companyCode).activate();
+  var rmaLocation = sheet.createTextFinder(rmaID).findNext();
+  var rmaRow = rmaLocation.getRow();
+  
+ //loop through the cells in that row, starting from the last column in the dataRange 
+  var lastColNum = sheet.getDataRange().getLastColumn();
+  for (var i = lastColNum; i >= 1; i--){
+    if(sheet.getRange(rmaRow,i).getValue() != "") {break;}
+  }
+  var nextCell = i+1;
+  
+//put the cursor in the first blank cell to the right of the RMA ID cell
+sheet.getRange(rmaRow, nextCell).activate();
+
+//show me that it works :) .. it does
+//sheet.getRange(rmaRow, nextCell).setValue("Hello Gorgeous! " + nextCell);
+
+*****************************************
+

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>RMA Dashboard</title>
+      <style>
+          * {
+              box-sizing: border-box;
+          }
+      
+          body {
+              width: 280px;
+              padding: 10px;
+              margin: auto;
+              text-align: center;
+          }
+      
+          img.logo {
+              width: 200px;
+          }
+      
+          div.buttons {
+              margin-top: 25px;
+          }
+      
+          button {
+              margin: 10px auto;
+              width: 250px;
+          }
+      
+          button:hover {
+              cursor: pointer;
+          }
+      
+          .loading {
+              background-color: lightgrey;
+              width: 100vw;
+              height: 100vh;
+              position: fixed;
+              top: 0;
+              left: 0;
+              padding-top: 50px;
+              z-index: 1000;
+          }
+      
+          .working {
+              padding: 25px 0;
+              font-size: 1.5rem;
+              color: #fff;
+          }
+      
+          .jsHide {
+              display: none;
+          }
+ 
+      </style>
+    </head>
+<body>
+<!-- <img src="http://volumetrics.us/wp-content/uploads/2015/02/volumetrics-01-300x174.png" class="logo" alt="Volumetrics logo" /> -->
+<div class="buttons">
+  <button id = 'gotoScan' class="waves-effect waves-light btn #ffab00 amber accent-4 black-text" onclick="google.script.run.withSuccessHandler(showLoader).clearRedirect()"><i class="material-icons left">line_weight</i>Go to SCAN BARCODE</button>
+ <button class="waves-effect waves-light btn blue darken-4" onclick="google.script.run.onReceive()"><i class="material-icons left">loupe</i>Receive</button>
+ <button class="waves-effect waves-light btn blue darken-4" onclick="google.script.run.findActivityCell('STEAM CLEAN')"><i class="material-icons left">check</i>STEAM CLEAN</button>
+ <button class="waves-effect waves-light btn blue darken-4" onclick="google.script.run.findActivityCell('AS-FOUND BENCH')"><i class="material-icons left">check</i>AS-FOUND BENCH</button>
+ <button class="waves-effect waves-light btn blue darken-4" onclick="google.script.run.findActivityCell('AS-LEFT BENCH')"><i class="material-icons left">check</i>AS-LEFT BENCH</button>
+ <button class="waves-effect waves-light btn blue darken-4" onclick="google.script.run.findActivityCell('METER CALIBRATION')"><i class="material-icons left">check</i>METER CALIBRATION</button>
+ <button class="waves-effect waves-light btn blue darken-4" onclick="google.script.run.findActivityCell('METER REPAIR')"><i class="material-icons left">check</i>METER REPAIR</button>
+ <button class="waves-effect waves-light btn blue darken-4" onclick="google.script.run.findActivityCell('JOB COMPLETE')"><i class="material-icons left">check</i>JOB COMPLETE</button>
+ <button class="waves-effect waves-light btn blue-grey lighten-4 black-text" onclick="google.script.run.openUpdateForm()"><i class="material-icons left">edit</i>Update Service Order</button>
+ <!--<button onclick="google.script.run.createLabel()">Create Shipping Label</button> -->
+ <!--<button onclick="google.script.run.openRMAForm()">View RMA Form</button> -->
+</div>
+<div id='loading' class='loading center-align jsHide'>
+  <a class='btn-floating btn-large cyan pulse'></a>
+    <div class='working'> 
+      Working ... 
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+
+$('#gotoScan').click(function(){
+$(".jsHide").show();
+});
+
+function showLoader(status) {
+if(status == 'AOK'){
+$(".jsHide").hide();
+}
+}
+
+window.addEventListener('beforeunload', function (e) {
+  e.preventDefault(); 
+  e.returnValue = '';
+  delete e['returnValue'];
+  google.script.run.withSuccessHandler(successSmellsLikeChocolate).clearReadyCellAtClose();
+  
+  //what was I planning here?
+  function successSmellsLikeChocolate(okToClose){
+  if(okToClose) {
+  }
+  
+  }
+  
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <?!= include("customerFacingCSS");  ?>
+    <title>RMA Sign-in</title>
+</head>
+
+<body>
+
+    <form id="updateRMAForm">
+        <div class="update-choices">
+            <h2>RMA Sign-in</h2>
+            <p>Welcome to the Company RMA Sign-in. </p>
+            <p>If you need to create and submit an RMA for meter servicing (such as calibration, as-found bench proving, etc), you are in the right place. :) </p>
+            <p>To begin, please enter your email address below and click 'Submit'.</p>
+            <p>After your login is verified, you will be directed to the New RMA Form, where you can enter the pertinent data and get the RMA process started.</p>
+            <p>We look forward to hearing from you soon! </p>
+        </div>
+        <div id="submitDiv" class="update-choices">
+            <p>Please enter your email address and click 'Submit'. </p>
+            <input id="loginEmail" typ='email' />
+            <div class='buttons'>
+                <button type="button" id="submitLogin">Submit</button>
+            </div>
+        </div>
+        <hr>
+        <div class="update-choices">
+            <h4 id="difficulties">Difficulties logging in?</h4>
+        </div>
+        <div id="loginTroubles" class="update-choices jsHide">
+            <p>Please Note ... </p>
+            <p>This login screen is for existing accounts.</p>
+            <p>If you experience difficulties logging in -- or need to create an account -- please let us know by entering your email address below ... </p>
+            <input id="emailTroubles" type='email' />
+            <p> ... and then clicking the 'Easy Like' button. :) </p>
+            <div class='buttons'>
+                <button type="button" id="sundayMorning">Sunday<br />Morning</button>
+            </div>
+            <div class="update-choices">
+                <p>We will respond as soon as we are able -- which is usually pretty soon. :) </p>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <?!= include("customerFacingJS");  ?>
+</body>
+
+</html>

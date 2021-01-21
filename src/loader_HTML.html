@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Working ... </title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 280px;
+            padding: 10px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .loading {
+            background-color: #fff;
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+            z-index: 1000;
+            color: #000;
+            font-size: 1.5rem;
+        }
+
+        .ready {
+            background-color: #fff;
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+            z-index: 1000;
+            color: #000;
+            font-size: 1.5rem;
+        }
+
+        .working {
+            padding: 25px 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <?!= workingContent; ?>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        google.script.host.setHeight(150);
+        google.script.host.setWidth(300)
+    </script>
+
+    <?!= scriptTag; ?>
+
+</body>
+
+</html>

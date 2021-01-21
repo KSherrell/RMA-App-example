@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <?!= include("htmlFormCSS");  ?>
+    <title>Form: Update RMA</title>
+    </head>
+<body>
+    <form id="updateRMAForm">
+        <div class="update-choices">
+        <h2>Customer Authorization</h2>
+        <p>Before modifying the RMA, you must have authorization from the customer. <br>
+        Input the name of the customer representative you spoke with regarding this change to the RMA.</p>
+        <input type='text' name='custName' id='customerRep' placeholder="Customer Rep Name (required)" required>
+        </div>
+        <div class="update-choices">
+            <h2>Modify the Service Order Items</h2>
+            <p>Work that has already been logged as 'completed' cannot be removed from an RMA.</p>
+            
+              <div class="left-div">
+                <h3>Current RMA</h3>
+                <p>These are the items currently listed on the RMA.</p>
+                 <div id="rmaSelections">
+                   <ul>
+                   <?!= currentRMAList; ?>
+                   </ul>
+                 </div>
+              </div>
+             
+            <div class="right-div">
+              <h3>Rebuild the RMA</h3>
+              <h4>Submit as CHECKED:</h4>
+              <p>- to <span>add</span> an item to the RMA</p>
+              <p>- to <span>keep</span> an item <span>on</span> the RMA</p>
+              <h4 class="subSub">Submit as UNCHECKED:</h4>
+              <p>- to <span>remove</span> an item from the RMA</p>
+              <p>- to <span>keep</span> an item <span>off</span> the RMA.</p>
+                 <div id="rmaSelections">
+                   <?!= uncheckedItems; ?>
+                 </div>
+                 <div class='buttons'>
+                  <button type="button" form="updateRMAForm" id="submit">Submit</button>
+                  <button type="button" form="updateRMAForm" id="cancel">Cancel</button>
+                  <p>Clicking 'Cancel' will close this form <br /> without updating the RMA</p>
+                </div>
+             </div>
+             
+
+             
+             
+         </div>
+            
+
+        <div class="clear"></div>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <?!= include("htmlFormJS");  ?>
+</body>
+
+</html>

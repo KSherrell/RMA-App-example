@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <?!= include("htmlFormCSS");  ?>
+    <title>Form: Update RMA</title>
+    </head>
+<body>
+    <form id="updateRMAForm">
+        <div class="update-choices">
+            <h2>Customer Authorization</h2>
+            <p>Before modifying the RMA, you must have authorization from the customer. <br>
+                Input the name of the customer representative you spoke with regarding this change to the RMA.</p>
+            <input type='text' name='custName' id='customerRep' placeholder="Customer Rep Name (required)" required>
+        </div>
+        <div class="update-choices">
+            <h2>Modify the Service Order Items</h2>
+            <p>Work that has already been logged as 'completed' cannot be removed from an RMA.</p>
+
+            <div class="left-div">
+                <h3>Completed Services</h3>
+                <p>Completed Items:</p>
+                <div id="rmaCompleted">
+                    <ul>
+                        <?!= currentRMAList; ?>
+                    </ul>
+                </div>
+                <p>If any work has already been completed, you will not be able to remove it from the RMA Service Order.</p>
+            </div>
+
+            <div class="right-div">
+                <h3>Updated Services</h3>
+                <p>Check all the services requested: </p>
+                <div id="rmaSelections">
+                    <?!= uncheckedItems; ?>
+                </div>
+                <div class='buttons'>
+                    <button type="button" form="updateRMAForm" id="submit">Submit</button>
+                    <button type="button" form="updateRMAForm" id="cancel">Cancel</button>
+                    <p>Clicking 'Cancel' will close this form <br /> without updating the RMA</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <?!= include("htmlFormJS");  ?>
+</body>
+
+</html>

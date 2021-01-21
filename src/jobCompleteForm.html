@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <?!= include("jobCompleteFormCSS");  ?>
+    <title>Job Complete</title>
+</head>
+
+<body>
+    <form id="updateRMAForm">
+        <div class="update-choices">
+            <h2>Job Complete</h2>
+            <h4>Date: <span id="jcDate"><?!= jcDate; ?></span></h4>
+            <h4>Logged by: <span id="jcPIN"><?!= pinName;  ?></span></h4>
+
+        </div>
+        <div class="update-choices">
+            <p>After clicking 'Submit', a summary will be emailed to the Confirmation Email address logged when the RMA was created. The summary will contain the following information: </p>
+            <ul>
+                <li>a list of the services completed</li>
+                <li>the date the meter was logged as completed</li>
+                <li>the Tracking Number, if applicable</li>
+            </ul>
+
+            <hr>
+
+            <p>This completed meter is being returned to the customer by:</p>
+            <div id="jcXportMethod">
+                 <?!= xportMethod; ?>
+            </div>
+
+           
+            <div class='buttons'>
+                <button type="button" form="jobCompleteForm" id="submit">Submit</button>
+                <button type="button" form="jobCompleteForm" id="cancel">Cancel</button>
+                <p>Clicking 'Cancel' will close this form <br /> without closing the RMA.</p>
+            </div>
+        </div>
+
+
+
+        <div class="clear"></div>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <?!= include("jobCompleteFormJS");  ?>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<script>
+
+//handlers for the form buttons
+//Oh shit, I just realized this is going to have to be an SPA
+
+document.getElementById('submitLogin').addEventListener('click', loginValues);
+
+function loginValues(e) {
+
+    e.preventDefault()
+    let login = $('#loginEmail').val();
+
+    //something like ... google.script.run.validateLogin(login);
+    //also, maybe put in a 'loading' graphic that will display while the customer login email is validating against the spreadsheet
+
+    //with a successHandler, ffs
+    //let loginValidation = google.script.run.validateLogin(login); //this will return true or false
+
+    //if (loginValidation){ load the personalized data entry form } else { disappointment }
+
+    let loginValidation = true;
+
+    if (loginValidation) {
+        alert(login);
+    }
+
+}
+
+
+$("#difficulties").click(function (e) {
+    e.preventDefault();
+
+    $('#loginTroubles').toggle();
+    $("#submitDiv").toggle();
+
+    let isLogin = $('#loginTroubles');
+    let loginDisplay = isLogin.css('display');
+
+    if (loginDisplay == 'block') {
+        $('#difficulties').text("Back to 'Submit'");
+    } else {
+        $('#difficulties').text("Difficulties logging in?");
+    }
+});
+
+$("#sundayMorning").click(function (e) {
+    e.preventDefault();
+
+    let troubledEmail = $("#emailTroubles").val("");//need an email address in here
+
+    //send this to the back end -- create an email, send to troubledEmail and to RMA Group, also can create a text message for someone to be alerted.
+
+    //let troubledSuccess = google.script.run.backEndFunction(troubledEmail);
+
+    //if(troubledSuccess){alert('Thank you! We will be contacting you soon.}
+
+    //clear the form field
+    //troubledEmail.val('');
+
+})
+
+</script>

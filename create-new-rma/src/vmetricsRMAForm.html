@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:light|Roboto&display=swap" rel="stylesheet">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- <link href="newRMAFormCSS.css" rel="stylesheet" type="text/css"> -->
+    <?!= include('vmetricsRMAFormCSS') ?>
+    <title>Form: New RMA</title>
+</head>
+
+<body>
+    <div class='container'>
+        <header>
+            <h5>Create a New RMA</h5>
+        </header>
+        <main>
+<form id='myForm'>
+
+<div id="newRMAForm" class="col s12">
+                <div>
+                    <h5>Instructions</h5>
+                    <p>Complete and submit one RMA form for each piece of equipment being sent for service.</p>
+                    <p>Shortly after you submit the form, you will receive a confirmation email containing a PDF copy of your completed RMA form. <br />When you receive the confirmation, please print out the attached PDF and include it with the equipment you are sending to us for service.</p>
+                    <h6>Note:</h6>
+                    <ul>
+                        <li>-- the type of Equipment shipped must match what is entered on this form</li>
+                        <li>-- the Serial Number entered in this form must match exactly what is on the equipment</li>
+                    </ul>
+                    <p class="red-text">All fields are required. </p>
+
+                </div>
+
+                <div>
+                    <h5>Company Name</h5>
+                    <select id='companyName' class="col s6 cBlock jsTxtRequired resetSelects" name="options">
+                        <option value="resetThis" disabled selected>select company name</option>
+                  
+                       <?!= companyNameList; ?>
+ 
+                    </select>
+                </div>
+
+                <div>
+                    <h5>Confirmation Email Address</h5>
+                    <p>The confirmation email will have a copy of this completed RMA form attached to it as a .pdf file. <br />
+                        The PDF attachment will need to be printed out and included with the meter or other equipment that you are sending over to Company.</p>
+                    <p class='question'>Where would you like for us to send the confirmation email?</p>
+
+                    <div class="jsContactDiv input-field col s12">
+                        <input id="confirmationEmail" type="text" class="validate jsTxtRequired" value="kim.sherrell@mobiedev.com">
+                        <label for="confirmationEmail"> Confirmation Email</label>
+                    </div>
+                </div>
+
+                <div class="jsContactDiv">
+                    <h5>Contact Information</h5>
+                    <p class='question'>Who should we call, text, or email in case we have questions regarding the meter or the Service Order?</p>
+                    <p>Please update the contact info if necessary.</p>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="contactFirstName" type="text" class="validate jsTxtRequired">
+                            <label for="contactFirstName">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="contactLastName" type="text" class="validate jsTxtRequired">
+                            <label for="contactLastName">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="contactCell" type="text" class="validate jsTxtRequired">
+                            <label for="contactCell">Cell Phone</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="contactEmail" type="text" class="validate jsTxtRequired">
+                            <label for="contactEmail">Email</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id='meterTransportDiv'>
+                    <h5>Meter Transport</h5>
+                    <p class="question">1. How will you be getting your meter to Company?</p>
+                    <p>Select one option below.</p>
+
+                    <ul id="xportToVmetrics" class="collapsible">
+
+                        <li>
+                            <div id="ship" class="collapsible-header"><label for="shipToVmetrics" id="jsSpan1"><i class="material-icons">local_shipping</i>I will ship it to Company</label>
+
+                            </div>
+                            <div class="collapsible-body">
+
+                                <div class='showThis hiddenSubDiv'>
+                                    <blockquote>
+                                        <label><input id="shipToVmetrics" class="with-gap" name="xportToVmetrics" type="radio"/>
+                                            <span class="question">Ship To Company</span>
+                                        </label>
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <p>Print out a copy of the .pdf RMA Information Form.</p>
+                                                <p>Include the printed RMA Information Form with the meter being sent to Company.</p>
+                                                <p>Please use the shipping address below:</p>
+                                                <div class="col s6">
+                                                    <p>
+                                                        Company RMA Dept.<br />
+                                                        Address Line One<br />
+                                                        City, State Zip<br />
+                                                    </p>
+
+                                                </div>
+                                                <div class="col s6">
+                                                    <p>
+                                                        Questions?<br />
+                                                        Call us for answers!
+                                                    </p>
+                                                    <p class="question shopPhone">(970) Call-Our-Shop</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </blockquote>
+                                </div>
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <div id="bring" class="collapsible-header"><label for="dropOffToVmetrics" id="jsSpan2"><i class="material-icons">store</i> I will drop it off at Company</label>
+                            </div>
+
+                            <div class="collapsible-body">
+                                <div class='showThis hiddenSubDiv'>
+                                    <blockquote>
+                                        <label><input id="dropOffToVmetrics" class="with-gap" name="xportToVmetrics" type="radio"  checked >
+                                            <span class="indigo-text darken-2">Arrange Drop-off</span>
+                                        </label>
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <p>We don't want to miss you! <br />Please call us to arrange a time for you to drop off your equipment and meet with one of our techs.</p>
+
+                                                <p>Questions?  Call us!<br /><span class='shopPhone'>(970) Call-Our-Shop</span></p>
+                                            </div>
+
+                                        </div>
+                                    </blockquote>
+                                </div>
+                            </div>
+
+                        </li>
+                        <li>
+
+                            <div id="requestPickup" class="collapsible-header"><label for="requestVmetricsPickup" id="jsSpan3"><i class="material-icons">location_on</i> Request custom pickup</label>
+                            </div>
+
+                            <div class="collapsible-body">
+
+                                <div>
+                                    <div class='showThis hiddenSubDiv'>
+                                        <blockquote>
+                                            <label><input id="requestVmetricsPickup" class="with-gap" name="xportToVmetrics" type="radio">
+                                                <span class="indigo-text darken-2 ">Request Company Pick-up</span>
+                                            </label>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>We don't want to miss you! Please call us to arrange a custom pick-up.</p>
+                                                    <p>Custom handling fees apply.</p>
+
+                                                    <p>Questions?  Call us!<br /><span class='shopPhone'>(970) Call-Our-Shop</span></p>
+                                                </div>
+
+                                            </div>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!--QUESTION 2 -->
+                    <p class="question topMargin50">2. How would you like for us to return your meter to you?</p>
+                    <p>Select one option below.</p>
+                    <ul id="xportToCustomer" class="collapsible">
+
+                        <li>
+                            <div id="returnShip" class="collapsible-header"><label for="returnShipToCustomer" id="jsSpan4"><i class="material-icons">local_shipping</i>Company will ship it to me <span style='font-size:smaller'>(enter a Return Shipping address here)</span></label>
+
+                            </div>
+                            <div class="collapsible-body">
+
+                                <div class='showThis hiddenSubDiv jsReturnDiv'>
+                                    <blockquote>
+                                        <label><input id="returnShipToCustomer" class="with-gap" name="xportToCustomer" type="radio" />
+                                            <span class="question indigo-text">Return: Ship To Customer</span>
+                                        </label>
+                                        <p>Where would you like us to ship the completed meter?</p>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                          
+                                                 <input id='returnCompanyName' type='text'class="validate jsTxtRequired2">
+                                                 <label for="returnCompanyName">Company Name</label>
+      
+                    <label class="clickToShow"></label>
+                                                
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input id="returnFirstName" type="text" class="validate jsTxtRequired2" value="please confirm">
+                                                <label for="returnFirstName">First Name</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input id="returnLastName" type="text" class="validate jsTxtRequired2" value="please confirm">
+                                                <label for="returnLastName">Last Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s8">
+                                                <input id="returnAddress" type="text" class="validate jsTxtRequired2" value="please confirm">
+                                                <label for="returnAddress">Address</label>
+                                            </div>
+
+                                            <div class="input-field col s3">
+                                                <input id="returnSuite" type="text" class="validate">
+                                                <label for="returnSuite">Unit or Suite</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input id="returnCity" type="text" class="validate jsTxtRequired2" value="please confirm">
+                                                <label for="returnCity">City</label>
+                                            </div>
+
+                                            <div class="input-field col s2">
+                                                <input id="returnState" type="text" class="validate jsTxtRequired2" value="please confirm">
+                                                <label for="returnState">State</label>
+                                            </div>
+                                            <div class="input-field col s3">
+                                                <input id="returnZip" type="text" class="validate jsTxtRequired2" value="please confirm">
+                                                <label for="returnZip">Zip</label>
+                                            </div>
+
+
+                                        </div>
+                                        <p>Questions?  Call us!<br /><span class='shopPhone'>(970) Call-Our-Shop</span></p>
+                                    </blockquote>
+                                </div>
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <div id="returnCustomerPickup" class="collapsible-header"><label for="returnCustPickup" id="jsSpan5"><i class="material-icons">store</i>I will come pick it up</label>
+                            </div>
+
+                            <div class="collapsible-body">
+                                <div class='showThis hiddenSubDiv'>
+                                    <blockquote>
+                                        <label><input id="returnCustPickup" class="with-gap" name="xportToCustomer" type="radio" checked>
+                                            <span class="indigo-text darken-2">Schedule Customer Pick-up</span>
+                                        </label>
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <p>Thank you!<br />
+                                                    We will give you a call to schedule your pick-up when the work is completed. </p>
+                                                <p class="question">Questions? Call us! <br /><span class='shopPhone'>(970) Call-Our-Shop</span></p>
+                                            </div>
+
+                                        </div>
+                                    </blockquote>
+                                </div>
+                            </div>
+
+                        </li>
+                        <li>
+
+                            <div id="returnDelivery" class="collapsible-header"><label for="returnHandDelivery" id="jsSpan6"><i class="material-icons">location_on</i>Company will hand-deliver it to my place</label>
+                            </div>
+
+                            <div class="collapsible-body">
+
+                                <div>
+                                    <div class='showThis hiddenSubDiv'>
+                                        <blockquote>
+                                            <label><input id="returnHandDelivery" class="with-gap" name="xportToCustomer" type="radio">
+                                                <span class="indigo-text darken-2 ">Return: Hand-Delivery To Customer</span>
+                                            </label>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p>Custom handling and delivery fees apply.</p>
+                                                    <p>We will give you a call to schedule the delivery window when the work is completed. </p>
+                                                    <p>Questions?  Call us!<br /><span class='shopPhone'>(970) Call-Our-Shop</span></p>
+                                                </div>
+
+                                            </div>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                   <h5>Equipment Information</h5>
+                    <p class="question">Please make your selections for the meter you are sending in to Company.</p>
+                    <div class="row valign-wrapper m0">
+                        <p class="labels col s6">1. Select brand of meter: </p>
+                        <select id='meterBrand' class="browser-default col s6 jsTxtRequired" name="optionsBrand">
+                            <option value="" disabled selected>select brand</option>
+                            <?!= meterBrands;  ?>
+                        </select>
+                    </div>
+
+                    <div class="row valign-wrapper m0">
+                        <p class="labels col s6">2. Select type of meter: </p>
+                        <select id='meterType' class="browser-default col s6 jsTxtRequired " name="optionsType">
+                            <option value="" disabled selected>select type</option>
+                        </select>
+                    </div>
+
+                    <div class="row valign-wrapper m0">
+                        <p class="labels col s6">3. Select meter model: </p>
+                        <select id='meterModel' class="browser-default col s6 jsTxtRequired" name="optionsModel">
+                            <option value="" disabled selected>select model</option>
+                        </select>
+                    </div>
+
+                    <div class="row valign-wrapper">
+                        <p class="labels col s6">4. Enter serial number:</p>
+                        <div class="input-field col s6">
+                            <input id="serialNumber" class="jsTxtRequired" type="text" placeholder="serial number">
+                            <!--<label for="serialNumber">Serial number</label>-->
+                        </div>
+                    </div>
+                </div>
+
+
+                <h5>Services</h5>
+                <p class="question">Check all services that you are requesting.</p>
+                <div class="valign-wrapper row">
+                    <div class='col s6'>
+                        <label>
+                            <input type="checkbox" class="filled-in" id='asFoundBench' name='asFoundBench' />
+                            <span>As-found Bench Proving</span>
+                        </label>
+                    </div>
+                    <div class='col s6'>
+                        <label>
+                            <input type="checkbox" class="filled-in" id='asLeftBench' name='asLeftBench' />
+                            <span>As-left Bench Proving</span>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="valign-wrapper row">
+                    <div class='col s6'>
+                        <label>
+                            <input type="checkbox" class="filled-in" id='meterCal' name='meterCal' />
+                            <span>Meter Calibration</span>
+                        </label>
+                    </div>
+                    <div class='col s6'>
+                        <label>
+                            <input type="checkbox" class="filled-in" id='meterRepair' name='meterRepair' />
+                            <span>Meter Repair</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="valign-wrapper">
+                    <div class='col s6'>
+                        <label>
+                            <input type="checkbox" class="filled-in" id='steamClean' name='steamClean' />
+                            <span>Steam Cleaning</span>
+                        </label>
+                    </div>
+                    <div class='col s6'>
+
+                    </div>
+                </div>
+
+
+                <h5>Proving</h5>
+                <p class="question">Please select the type of meter proving you are requesting. </p>
+                <div class='row'>
+                    <div class='col s3'>
+                        <label>
+                            <input id='allocationProving' class="with-gap" name="xportFromVmetrics" type="radio" />
+                            <span>Allocation</span>
+                        </label>
+                    </div>
+                    <div class='col s4'>
+                        <label>
+                            <input id='custodyProving' class="with-gap" name="xportFromVmetrics" type="radio" />
+                            <span>Custody Transfer</span>
+                        </label>
+                    </div>
+                    <div class='col s5'>
+                        <label>
+                            <input id='noneProving' class="with-gap" name="xportFromVmetrics" type="radio" checked />
+                            <span>None</span>
+                        </label>
+
+                    </div>
+                </div>
+
+                <h5>Flow Rate</h5>
+                <p class="question">Against what flow rate would you like the meter proved?  <span style="font-size:smaller">(0 if meter isn't being proven)</span></p>
+
+                <div class="row valign-wrapper">
+
+                    <div class="input-field col s2">
+                        <input id="flowRate" type="text" class="validate jsTxtRequired" value="0">
+                        <label for="flowRate">Flow Rate</label>
+                    </div>
+                    <div class="labels col s10">
+                        <p>barrels per day</p>
+                    </div>
+
+                </div>
+
+                <h5>Lead Time</h5>
+                <p class="question">Lead Time begins when we receive and check-in the meter. <br /><span> Please call us if you have any questions. <span class="shopPhone">(970) Call-Our-Shop</span></span>
+                </p>
+                <div class='row'>
+                    <div class='col s3'>
+                        <label>
+                            <input id='lead1' class="with-gap" name="leadTime" type="radio" />
+                            <span>1 Day</span>
+                        </label>
+                    </div>
+                    <div class='col s3'>
+                        <label>
+                            <input id='lead3' class="with-gap" name="leadTime" type="radio" />
+                            <span>3 Days</span>
+                        </label>
+                    </div>
+                    <div class='col s3'>
+                        <label>
+                            <input id='lead7' class="with-gap" name="leadTime" type="radio" />
+                            <span>7 Days</span>
+                        </label>
+                    </div>
+                    <div class='col s3'>
+                        <label>
+                            <input id='lead14' class="with-gap" name="leadTime" type="radio" checked />
+                            <span>14 Days</span>
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class='row topMargin50 center-align'>
+
+                    <div class='col s12 topMargin50'>
+                        <button id='jsSubmitBtn' class="btn waves-effect waves-light btn-large indigo darken-2">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <div id="thankYouPage">
+                <p class="question">
+                    Thank you!
+
+                </p>
+            </div>
+
+</form>
+        </main>
+
+                <footer class='btmMargin150'>
+
+                    <div id="loader"></div>
+                    
+               </footer>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+        <!-- <script type="text/javascript" src="newRMAFormJS.js"></script> -->
+        <?!= include('vmetricsRMAFormJS'); ?>
+
+    </div>
+</body>
+
+
+</html>

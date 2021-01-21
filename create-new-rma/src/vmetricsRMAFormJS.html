@@ -1,0 +1,304 @@
+<script>
+$(document).ready(function () {
+
+$('.collapsible').collapsible();
+});
+
+    $('.collapsible-header span').click(function (e) {
+
+        var thisSpan = `div#${e.currentTarget.id}`;
+        var parentDiv = `div#${e.currentTarget.parentElement.id}`;
+
+        var thisDivBquoteId = $(parentDiv).closest('ul').attr('id');
+        //i bet I can stack these
+
+        switch (thisDivBquoteId) {
+            case 'xportToVmetrics':
+
+                var howToXport = document.getElementsByName("xportToVmetrics");
+                howToXport.checked = 'false';
+
+                switch (parentDiv) {
+                    case 'div#ship':
+                        howToXport[0].checked = 'true';
+                        break;
+
+                    case 'div#bring':
+                        howToXport[1].checked = 'true';
+                        break;
+
+                    case 'div#requestPickup':
+                        howToXport[2].checked = 'true';
+                }
+                break;
+
+            case 'xportToCustomer':
+
+                $('#xportToCustomer input').prop('checked', '');
+
+                switch (parentDiv) {
+                    case 'div#returnShip':
+                        $('input#returnShipToCustomer').prop('checked', 'checked');
+                        break;
+
+                    case 'div#returnCustomerPickup':
+                        $('input#returnCustPickup').prop('checked', 'checked');
+                        break;
+
+                    case 'div#returnDelivery':
+                        $('input#returnHandDelivery').prop('checked', 'checked');
+                }
+
+        }
+    });
+
+//Select meterBrand to populate the meterTypes dropdown    
+$('#meterBrand').change(function(e) {
+$('#loader').show();
+//okay, what I want to happen here is .. 
+
+//reset the defaults 
+$("#meterType").html("<option disabled selected>select type</option>");
+$("#meterModel").html("<option>select model</option>");
+
+//grab the text value of the selected option
+var brandTab = $( "#meterBrand option:selected" ).val();
+
+//and use it to get the appropriate list
+var meterTypes = google.script.run.withSuccessHandler(listHandler).getList('meterType', brandTab);
+
+function listHandler(htmlList){
+
+$('#meterType').append(htmlList);
+$('#loader').hide();
+};
+
+
+});//IM SOFA KING FURIOUS RIGHT NOW. THIS CODE EDITOR SUCKETH ASS. I FOUND MY SYNTAX ERROR IN < 5 MINS WITH THE OTHER EDITOR. 
+//I'M REALLY TAKING A BREAK THIS TIME. 
+
+//Select the meterType to populate the meterModels dropdown
+$('#meterType').change(function(e) {
+$('#loader').show();
+//okay, what I want to happen here is .. 
+$("#meterModel").html("<option disabled selected>select model</option>");
+
+// I want to grab the meterBrand and meterType that has been selected
+var brandTab = $( "#meterBrand option:selected" ).val();
+var typeName = $("#meterType option:selected").val() + "_A";
+
+//and use it to get the appropriate list
+var meterModels = google.script.run.withSuccessHandler(listHandler).getList(typeName, brandTab);
+function listHandler(htmlList){
+$('#meterModel').append(htmlList);
+$('#loader').hide();
+};
+
+//i just realized i did not take a break
+});
+
+
+//auto-popluate the contact fields if the data is in the spreadsheet
+$('#companyName').change(function(e) {
+var companyCode = $('#companyName option:selected').val();
+var companyTab = companyCode.slice(-4, -1);
+$('#loader').show();
+google.script.run.withSuccessHandler(autoPop).prevEntry(companyTab);
+
+function autoPop(autoPopTextObj){
+
+$('#loader').hide();
+
+$('#confirmationEmail').val(autoPopTextObj.confirmationEmail);
+$('#contactEmail').val(autoPopTextObj.contactEmail);
+$('#contactFirstName').val(autoPopTextObj.contactFirstName);
+$('#contactLastName').val(autoPopTextObj.contactLastName);
+$('#contactCell').val(autoPopTextObj.contactCell);
+
+$('#returnCompanyName').val(companyCode);
+$('#returnFirstName').val(autoPopTextObj.returnFirstName)
+$('#returnLastName').val(autoPopTextObj.returnLastName);
+$('#returnAddress').val(autoPopTextObj.returnAddress);
+$('#returnSuite').val(autoPopTextObj.returnSuite);
+$('#returnCity').val(autoPopTextObj.returnCity);
+$('#returnState').val(autoPopTextObj.returnState);
+$('#returnZip').val(autoPopTextObj.returnZip);
+
+$('.jsContactDiv label').addClass('active');
+$('.jsReturnDiv label').addClass('active');
+}
+});
+
+
+//SUBMITTING THE FORM!! 
+    $('#jsSubmitBtn').click(function (e) {
+        e.preventDefault();
+        var formObj = {};
+        var formFields = $('input');
+        var radioFields = $('input:radio');
+        var checkFields = $('input:checkbox');
+        var txtRequired = document.getElementsByClassName('jsTxtRequired');
+        
+         $('#jsSubmitBtn').attr('disabled', true);        
+$('#loader').show();
+        for (var i = 0; i < txtRequired.length; i++) {
+        var textFieldId = '#'+txtRequired[i].id;
+       
+           if(txtRequired[i].value == ""){
+$('#loader').hide();
+           switch (txtRequired[i].id) {
+           
+           case 'companyName':
+           alert('Please select the company name.');
+           break;
+           
+           case 'confirmationEmail':
+           alert('Please enter an email address for the Confirmation Email.');
+           break;
+           
+           case 'contactFirstName':
+           alert('Please enter a first name for the company contact');
+           break;
+           
+           case 'contactLastName':
+           alert('Please enter a last name for the company contact');
+           break;
+           
+           case 'contactCell':
+           alert('Please enter a cell phone number for the company contact');
+           break;
+           
+           case 'contactEmail':
+           alert('Please enter an email address for the company contact');
+           break;  
+           
+           case 'meterBrand' || 'meterType' || 'meterModel':
+           alert('Please complete the meter information.');
+           break;
+           
+           case 'serialNumber':
+           alert('Please complete the meter information.');
+           break;
+                      
+           case 'flowRate':
+           alert('Please enter the desired flow rate.');
+           break;
+           }
+           
+          $(textFieldId).focus();
+          break;
+
+        }  else {
+        
+             formObj[txtRequired[i].id] = txtRequired[i].value
+        }
+        
+        };
+
+       //make sure that at least one radio button per group is pre-selected in the html
+       for (var i = 0; i < radioFields.length; i++) {
+            formObj[radioFields[i].id] = radioFields[i].checked
+        }
+        
+        //check for at least one checked box; if !checkedBoxes, alert('Please select at least one Service')
+        var count = 0;
+        for (var i = 0; i < checkFields.length; i++) {
+            formObj[checkFields[i].id] = checkFields[i].checked;
+            //just count the checks already -- starts here, I think - that thing happened with the manual entry. 
+            
+//***********Take away one kadam and dig here
+            
+            if(checkFields[i].checked == true){
+            count++;
+            }
+        }
+        if(count == 0){
+$('#loader').hide();
+        alert('Please select at least one service.');
+        }
+
+      // aaaaaaaaaand we're done 
+       
+     //PSYCH! -- we're not done.
+     
+     //validate the Return Ship to Customer Address, but only if that radio button is selected
+   if(formObj.returnShipToCustomer == true){
+ 
+      var txtRequired = document.getElementsByClassName('jsTxtRequired2');
+        for (var i = 0; i < txtRequired.length; i++) {
+        var textFieldId = '#'+txtRequired[i].id;
+       
+           if(txtRequired[i].value == ""){
+$('#loader').hide();
+           switch (txtRequired[i].id) {
+           
+           case 'returnCompanyName':
+           alert('Please enter the company name.');
+           break;
+           
+           case 'returnAddress' || 'returnCity' || 'returnState' || 'returnZip':
+           alert('Please complete the return address.');
+           break;
+           
+           case 'returnFirstName':
+           alert('Please enter a first name for the company contact');
+           break;
+           
+           case 'returnLastName':
+           alert('Please enter a last name for the company contact');
+           break;
+           }
+           
+          $(textFieldId).focus();
+          break;
+
+        } else {
+        
+             formObj[txtRequired[i].id] = txtRequired[i].value;
+            
+        }
+        
+        
+        }
+     
+     }
+     
+         formObj.returnSuite = $('#returnSuite').val();
+         var companyCode = $('#companyName option:selected').val().slice(-4, -1);
+         formObj.companyCode = companyCode;
+         //disable the Submit button to prevent multiple submissions
+         google.script.run.withSuccessHandler(resetForm).scrubForm(formObj);                 
+         //now we're done. :) 
+
+        function resetForm(theTrigger){
+        $('#jsSubmitBtn').attr('disabled', false);
+
+        console.log();
+        if (theTrigger == 'AOK'){
+$('#loader').hide();
+//first step, a basic reset        
+document.getElementById("myForm").reset();
+
+//and now, the devil ... which is in the details
+document.getElementById("companyName").selectedIndex = 0;
+$("#meterBrand").html("<option value='' disabled selected>select brand</option>");
+$("#meterType").html("<option value='' disabled selected>select type</option>");
+$("#meterModel").html("<option value='' disabled selected>select model</option>");
+
+//and the aesthetics 
+var elems = $(".collapsible-body");
+elems.hide();
+
+window.scroll(0, 0);
+//and the notice
+alert('Form Submitted');
+
+
+        };
+        }
+       
+})
+     
+
+</script>
+
