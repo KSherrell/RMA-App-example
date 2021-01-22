@@ -52,7 +52,7 @@ View in screenshots folder
 
 This code creates a Google Sheets application and utilizes App Script.
 
-- I removed my workbook Id's and company email addresses - you will need to replace those with your workbook Id's and email addresses
+- I removed my workbook Id's and company email addresses - you will need to replace those with your own workbook Id's and email addresses
 - copy the code in the SRC folder to your Sheets project
     - the .js files are the .GS files, all others are html files 
 - deploy the project as a web app
