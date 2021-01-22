@@ -9,7 +9,7 @@ This was my first application written as a professional developer. My supervisor
 - 
 
 ## Screenshots
-	[![DESCRIPTION HERE](/screenshots/rma01.png "description here")](/screenshots/rma01.png)
+	![Description Here](https://github.com/KSherrell/RMA-App-example/blob/main/screenshots/rma01.png "description on mouseover")
 ## Project Tech
 - Javascript
 - jQuery
