@@ -1,8 +1,8 @@
 # Return Merchandize Authorization Application example
 ## Description
-The RMA Application was created to track the meter traffic in and out of the shop and the work that was performed on each meter, from Receive to Job Complete. We were thinking BIG when we thought of this application, and it is incredibly full-featured, including details such as logging comments to the activity cells and sending detailed Job Complete emails to customers.
+The RMA Application was created to track the meter traffic in and out of the shop and the work that was performed on each meter, from Receive to Job Complete. We were thinking BIG when we thought of this application and it is incredibly full-featured, including details such as logging comments to the activity cells and sending detailed Job Complete emails to customers.
 
-This was my first application written as a professional developer. My supervisor and I met every Thursday and increased the scope of the project - lol. Lessons learned. It was challenging as hell and I am really pleased with how it turned out. Also, on a personal note, it's fun for me to look at this and see the evolution of my code. I remember how nervous I was to release this kraken. 
+This was my first application written as a professional developer. My supervisor and I met every Thursday and increased the scope of the project - lol. Lessons learned. It was challenging as hell and I am really pleased with how it turned out. Also, on a personal note, it's fun for me to look at this and see the evolution of my code. Yep, I remember how nervous I was to release this kraken. 
 
 ## Features
 - Custom menus and user forms
