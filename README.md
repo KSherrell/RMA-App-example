@@ -1,15 +1,34 @@
 # Return Merchandize Authorization Application example
 ## Description
-The RMA Application was created to track the meter traffic in and out of the shop and the work that was performed on each meter, from Receive to Job Complete. We were thinking BIG when we thought of this application and it is incredibly full-featured, including details such as logging comments to the activity cells and sending detailed Job Complete emails to customers.
+The RMA Application is a Google Sheets database application that created to track the meter traffic in and out of the shop and the work that was performed on each meter, from Receive to Job Complete. 
 
-This was my first application written as a professional developer. My supervisor and I met every Thursday and increased the scope of the project - lol. Lessons learned. It was challenging as hell and I am really pleased with how it turned out. Also, on a personal note, it's fun for me to look at this and see the evolution of my code. Yep, I remember how nervous I was to release this kraken. 
 
 ## Features
 - Custom menus and user forms
-- 
+    - fields will auto-fill with any existing customer data
+    - easily update customer information by typing over the auto-fill
+    - dependent drop-downs filter selections for the user
+- Creates a unique identifier for each RMA job 
+- Customers can request up to five different services per RMA job
+- Logging comments attached to activity cells
+    - RMA form is submitted
+    - service item is complete
+    - Job Closed (updated on re-open)
+    - Job Complete
+- Creates and emails a PDF of the RMA Job Information
+    - an RMA bar code is created on the PDF for easy data entry
+- Saves a Google Doc copy of the RMA Job Info
+- Email notifications for: 
+    - creating an RMA
+    - updating an RMA
+    - generating a 'Job Closed' result from the 'Receive' dialogue
+    - re-opening an RMA
+    - completing a line item ('Job Complete')
+    - a visitor to the Customer Login screen submits the 'I've had difficulty logging in' form 
 
 ## Screenshots
-	![Description Here](https://github.com/KSherrell/RMA-App-example/blob/main/screenshots/rma01.png "description on mouseover")
+View in screenshots folder 
+
 ## Project Tech
 - Javascript
 - jQuery
@@ -26,5 +45,5 @@ This was my first application written as a professional developer. My supervisor
 
 ## Working on next ...
 - taking the customer data out of the RMA App and pulling it from Smith: Customer DB instead
-- a little bit of code optimization
+- code optimization
 
